@@ -25,16 +25,16 @@ DirtAudioProcessor::DirtAudioProcessor()
 DirtAudioProcessor::Parameters::ParameterLayout DirtAudioProcessor::createParameterLayout()
 {
     Parameters::ParameterLayout layout;
-    layout.add (std::make_unique<juce::AudioParameterFloat> (tubeId, "Tube", 0.0f, 1.0f, 0.0f));
-    layout.add (std::make_unique<juce::AudioParameterFloat> (mechId, "Mech", 0.0f, 1.0f, 0.0f));
-    layout.add (std::make_unique<juce::AudioParameterFloat> (cutoffId, "Cutoff", juce::NormalisableRange<float> (20.0f, 20000.0f, 1.0f, 0.25f), 12000.0f, "Hz"));
-    layout.add (std::make_unique<juce::AudioParameterFloat> (resonanceId, "Resonance", 0.1f, 10.0f, 0.707f));
-    layout.add (std::make_unique<juce::AudioParameterChoice> (modeId, "Filter mode", juce::StringArray { "LP", "BP", "HP" }, 0));
-    layout.add (std::make_unique<juce::AudioParameterChoice> (slopeId, "Slope", juce::StringArray { "12", "24", "36" }, 0));
-    layout.add (std::make_unique<juce::AudioParameterFloat> (compId, "Comp", 0.0f, 1.0f, 0.0f));
-    layout.add (std::make_unique<juce::AudioParameterFloat> (phatId, "Phat", 0.0f, 1.0f, 0.0f));
-    layout.add (std::make_unique<juce::AudioParameterFloat> (volumeId, "Volume", -24.0f, 12.0f, 0.0f, "dB"));
-    layout.add (std::make_unique<juce::AudioParameterFloat> (mixId, "Mix", 0.0f, 1.0f, 1.0f));
+    layout.add (std::make_unique<juce::AudioParameterFloat> (juce::ParameterID { tubeId, 1 }, "Tube", juce::NormalisableRange<float> { 0.0f, 1.0f }, 0.0f));
+    layout.add (std::make_unique<juce::AudioParameterFloat> (juce::ParameterID { mechId, 1 }, "Mech", juce::NormalisableRange<float> { 0.0f, 1.0f }, 0.0f));
+    layout.add (std::make_unique<juce::AudioParameterFloat> (juce::ParameterID { cutoffId, 1 }, "Cutoff", juce::NormalisableRange<float> { 20.0f, 20000.0f, 1.0f, 0.25f }, 12000.0f, "Hz"));
+    layout.add (std::make_unique<juce::AudioParameterFloat> (juce::ParameterID { resonanceId, 1 }, "Resonance", juce::NormalisableRange<float> { 0.1f, 10.0f }, 0.707f));
+    layout.add (std::make_unique<juce::AudioParameterChoice> (juce::ParameterID { modeId, 1 }, "Filter mode", juce::StringArray { "LP", "BP", "HP" }, 0));
+    layout.add (std::make_unique<juce::AudioParameterChoice> (juce::ParameterID { slopeId, 1 }, "Slope", juce::StringArray { "12", "24", "36" }, 0));
+    layout.add (std::make_unique<juce::AudioParameterFloat> (juce::ParameterID { compId, 1 }, "Comp", juce::NormalisableRange<float> { 0.0f, 1.0f }, 0.0f));
+    layout.add (std::make_unique<juce::AudioParameterFloat> (juce::ParameterID { phatId, 1 }, "Phat", juce::NormalisableRange<float> { 0.0f, 1.0f }, 0.0f));
+    layout.add (std::make_unique<juce::AudioParameterFloat> (juce::ParameterID { volumeId, 1 }, "Volume", juce::NormalisableRange<float> { -24.0f, 12.0f }, 0.0f, "dB"));
+    layout.add (std::make_unique<juce::AudioParameterFloat> (juce::ParameterID { mixId, 1 }, "Mix", juce::NormalisableRange<float> { 0.0f, 1.0f }, 1.0f));
     return layout;
 }
 

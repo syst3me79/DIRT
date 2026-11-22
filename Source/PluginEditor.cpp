@@ -15,7 +15,7 @@ DirtAudioProcessorEditor::DirtAudioProcessorEditor (DirtAudioProcessor& p)
     for (size_t i = 0; i < knobs.size(); ++i)
     {
         auto& slider = knobs[i];
-        slider.setSliderStyle (i == 4 || i == 5 ? juce::Slider::RotaryHorizontalVerticalDrag : juce::Slider::RotaryHorizontalVerticalDrag);
+        slider.setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
         slider.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 72, 18);
         slider.setColour (juce::Slider::rotarySliderFillColourId, juce::Colour (0xff73bbc4));
         slider.setColour (juce::Slider::thumbColourId, juce::Colour (0xfff4f2f2));
@@ -38,8 +38,11 @@ void DirtAudioProcessorEditor::paint (juce::Graphics& g)
     g.drawRoundedRectangle (getLocalBounds().toFloat().reduced (12.0f), 15.0f, 1.0f);
     g.setColour (juce::Colour (0xff72b9c3));
     g.fillEllipse (getWidth() * 0.5f - 3.0f, 83.0f, 6.0f, 6.0f);
+
+    juce::Path filterIcon;
+    filterIcon.addCentredArc (getWidth() - 95.0f, 111.0f, 19.0f, 19.0f, 0.0f, 0.3f, 5.3f, true);
     g.setColour (juce::Colour (0xff718d39));
-    g.drawArc (getWidth() - 115.0f, 91.0f, 40.0f, 40.0f, 0.3f, 5.3f, true, juce::PathStrokeType (4.0f));
+    g.strokePath (filterIcon, juce::PathStrokeType (4.0f));
 }
 
 void DirtAudioProcessorEditor::resized()
